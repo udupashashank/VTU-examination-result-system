@@ -22,6 +22,7 @@
       const usn = document.getElementById("usn").value;
       const results = JSON.parse(localStorage.getItem("results") || "{}");
 
+      
       if (results[usn]) {
         let r = results[usn];
         document.getElementById("output").innerHTML = `
@@ -37,4 +38,5 @@
     }
   </script>
 </body>
+
 </html>
