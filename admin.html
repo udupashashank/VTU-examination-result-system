@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - Add VTU Results</title>
+  <style>
+    body { font-family: Arial; margin: 40px; }
+    input { padding: 8px; margin: 10px 0; display:block; }
+  </style>
+</head>
+<body>
+  <h2>Admin - Add VTU Results</h2>
+
+  <input id="usn" placeholder="USN">
+  <input id="sub1" placeholder="Subject 1 Marks">
+  <input id="sub2" placeholder="Subject 2 Marks">
+  <input id="sub3" placeholder="Subject 3 Marks">
+  <button onclick="save()">Save Result</button>
+
+  <p id="msg"></p>
+
+  <script>
+    function save() {
+      const usn = document.getElementById("usn").value;
+      const sub1 = document.getElementById("sub1").value;
+      const sub2 = document.getElementById("sub2").value;
+      const sub3 = document.getElementById("sub3").value;
+
+      const total = Number(sub1) + Number(sub2) + Number(sub3);
+
+      let results = JSON.parse(localStorage.getItem("results") || "{}");
+
+      results[usn] = { sub1, sub2, sub3, total };
+
+      localStorage.setItem("results", JSON.stringify(results));
+
+      document.getElementById("msg").innerHTML = "Result saved successfully!";
+    }
+  </script>
+</body>
+</html>
