@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VTU Exam Results</title>
+  <style>
+    body { font-family: Arial; margin: 40px; }
+    input { padding: 8px; margin: 10px 0; }
+    button { padding: 8px 12px; }
+  </style>
+</head>
+<body>
+  <h2>VTU Examination Results</h2>
+  <p>Enter your USN to view results:</p>
+
+  <input id="usn" placeholder="Enter USN">
+  <button onclick="getResult()">Get Result</button>
+
+  <div id="output"></div>
+
+  <script>
+    function getResult() {
+      const usn = document.getElementById("usn").value;
+      const results = JSON.parse(localStorage.getItem("results") || "{}");
+
+      if (results[usn]) {
+        let r = results[usn];
+        document.getElementById("output").innerHTML = `
+          <h3>Results for ${usn}</h3>
+          <p>Subject 1: ${r.sub1}</p>
+          <p>Subject 2: ${r.sub2}</p>
+          <p>Subject 3: ${r.sub3}</p>
+          <p>Total: ${r.total}</p>
+        `;
+      } else {
+        document.getElementById("output").innerHTML = "No results found!";
+      }
+    }
+  </script>
+</body>
+</html>
